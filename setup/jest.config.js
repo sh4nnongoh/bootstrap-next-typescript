@@ -15,7 +15,7 @@ module.exports = createJestConfig({
     "/.next/"
   ],
   collectCoverageFrom: [
-    "."
+    "./**/*.{ts,tsx}"
   ],
   coverageThreshold: {
     global: {
