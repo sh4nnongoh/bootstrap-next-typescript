@@ -3,10 +3,10 @@ const createJestConfig = nextJest({
   dir: "./"
 });
 module.exports = createJestConfig({
-  setupFilesAfterEnv: ["<rootDir>/jest.setup.js"],
+  setupFilesAfterEnv: ["<rootDir>/src/tests/jest.setup.tsx"],
   moduleNameMapper: {
-    "^@/components/(.*)$": "<rootDir>/components/$1",
-    "^@/pages/(.*)$": "<rootDir>/pages/$1"
+    "^@/components/(.*)$": "<rootDir>/src/components/$1",
+    "^@/pages/(.*)$": "<rootDir>/src/pages/$1"
   },
   testEnvironment: "jest-environment-jsdom",
   testPathIgnorePatterns: [
