@@ -10,7 +10,7 @@ execSync("cp ./bootstrap-next-typescript/setup/jest.setup.js jest.setup.js");
 execSync("cp ./bootstrap-next-typescript/setup/types.d.ts types.d.ts");
 execSync("cp ./bootstrap-next-typescript/setup/postcss.config.js ./postcss.config.js");
 execSync("cp ./bootstrap-next-typescript/setup/tailwind.config.js ./tailwind.config.js");
-execSync("yarn add tailwindcss postcss autoprefixer");
+execSync("yarn add -D tailwindcss postcss autoprefixer");
 execSync("yarn add -D install-peerdeps cross-env husky");
 execSync("yarn install-peerdeps -D eslint-config-airbnb --yarn");
 execSync("yarn add -D eslint-config-next");
