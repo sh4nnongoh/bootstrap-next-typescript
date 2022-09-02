@@ -1,6 +1,6 @@
 const { execSync } = require("child_process");
 const fs = require("fs");
-execSync("mkdir src");
+execSync("mkdir -p src src/hooks src/contexts src/views src/components src/utils src/tests");
 execSync("cp -r ./bootstrap-next-typescript/setup/scripts .");
 execSync("cp -r ./bootstrap-next-typescript/setup/.vscode .");
 execSync("cp -r ./bootstrap-next-typescript/setup/tests src/");
