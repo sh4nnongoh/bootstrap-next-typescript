@@ -1,5 +1,6 @@
 const { execSync } = require("child_process");
 const fs = require("fs");
+const { setJsonFileProps } = require("./utils/setJsonFileProps.js");
 execSync("mkdir -p src src/hooks src/contexts src/views src/components src/utils src/tests");
 execSync("cp -r ./bootstrap-next-typescript/setup/scripts .");
 execSync("cp -r ./bootstrap-next-typescript/setup/.vscode .");
@@ -18,19 +19,16 @@ execSync("yarn add -D install-peerdeps cross-env husky");
 execSync("yarn install-peerdeps -D eslint-config-airbnb --yarn");
 execSync("yarn add -D eslint-config-next");
 execSync("yarn add -D jest jest-environment-jsdom @types/jest @testing-library/react @testing-library/jest-dom @testing-library/user-event");
-const packageJson = fs.readFileSync("package.json", { encoding: "utf8" });
-const packageJsonProps = JSON.parse(packageJson);
-const updatedPackageJsonProps = {
-  ...packageJsonProps,
-  scripts: {
-    ...packageJsonProps.scripts,
-    lint: "next lint -d .",
+setJsonFileProps({
+  filePath: "package.json",
+  propsPath: "scripts",
+  updatedProps: {
+    "lint": "next lint -d .",
     "lint:fix": "next lint -d . --fix",
-    test: "jest",
+    "test": "jest",
     "update-version": "node scripts/update-version.js"
   }
-};
-fs.writeFileSync("package.json", JSON.stringify(updatedPackageJsonProps, null, 2));
+})
 const app = fs.readFileSync("src/pages/_app.tsx", { encoding: "utf8" });
 const updatedApp = `/* eslint-disable react/jsx-props-no-spreading */\n${app}`;
 fs.writeFileSync("src/pages/_app.tsx", updatedApp);
