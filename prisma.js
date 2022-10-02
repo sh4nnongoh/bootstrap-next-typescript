@@ -2,7 +2,7 @@ const { execSync } = require("child_process");
 const fs = require("fs");
 const { setJsonFileProps } = require("./utils/setJsonFileProps");
 execSync("mkdir -p prisma");
-execSync("cp -r ./bootstrap-next-typescript/prisma/src/prisma/* prisma");
+execSync("cp -r ./bootstrap-next-typescript/prisma/prisma/* prisma");
 execSync("cp ./bootstrap-next-typescript/prisma/.env.local .");
 execSync("npm i -g dotenv-cli");
 execSync("yarn add -D prisma sqlite3");
