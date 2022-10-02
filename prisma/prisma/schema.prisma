@@ -5,6 +5,8 @@ datasource db {
   provider = "sqlite"
   url      = env("DATABASE_URL")
 }
+// Note that for Event driven database modelling, immutability is needed.
+// Prisma recommends relying on the underlying database RBAC to enforce immutability.
 model UserEvent {
   id        String      @id @default(cuid())
   userId    String      @default(cuid())

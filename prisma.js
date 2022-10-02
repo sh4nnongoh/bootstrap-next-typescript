@@ -18,13 +18,14 @@ setJsonFileProps({
   filePath: "package.json",
   propsPath: "scripts",
   updatedProps: {
-    "migrate": "dotenv -e .env.local -- yarn prisma migrate dev"
+    "db:migrate": "dotenv -e .env.local -- yarn prisma migrate dev"
   }
 })
-execSync("yarn migrate --name create-user");
+execSync("yarn db:migrate --name create-user");
 const gitIgnore = fs.readFileSync(".gitignore", { encoding: "utf8" });
 const updatedGitIgnore = `${gitIgnore}\nprisma/data\n`;
 fs.writeFileSync(".gitignore", updatedGitIgnore);
+execSync("yarn lint:fix");
 execSync("git reset");
 execSync("git add -- . ':!bootstrap-next-typescript'");
-execSync("git commit -m 'arch: bootstrap-next-typescript/typeorm'");
+execSync("git commit -m 'arch: bootstrap-next-typescript/prisma'");

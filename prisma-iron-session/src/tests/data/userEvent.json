@@ -1,0 +1,10 @@
+{
+  "data": [
+    {
+      "email": "sh4nnongoh@gmail.com",
+      "name": "Shannon",
+      "isActive": true,
+      "isAdmin": true
+    }
+  ]
+}

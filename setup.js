@@ -14,11 +14,12 @@ execSync("cp ./bootstrap-next-typescript/setup/jest.config.js jest.config.js");
 execSync("cp ./bootstrap-next-typescript/setup/types.d.ts src/types.d.ts");
 execSync("cp ./bootstrap-next-typescript/setup/postcss.config.js postcss.config.js");
 execSync("cp ./bootstrap-next-typescript/setup/tailwind.config.js tailwind.config.js");
+execSync("yarn add lodash");
 execSync("yarn add -D tailwindcss postcss autoprefixer");
 execSync("yarn add -D install-peerdeps cross-env husky");
 execSync("yarn install-peerdeps -D eslint-config-airbnb --yarn");
 execSync("yarn add -D eslint-config-next");
-execSync("yarn add -D jest jest-environment-jsdom @types/jest @testing-library/react @testing-library/jest-dom @testing-library/user-event");
+execSync("yarn add -D jest jest-environment-jsdom @types/jest @testing-library/react @testing-library/jest-dom @testing-library/user-event @types/lodash");
 setJsonFileProps({
   filePath: "package.json",
   propsPath: "scripts",
