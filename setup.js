@@ -19,7 +19,7 @@ execSync("yarn add -D tailwindcss postcss autoprefixer");
 execSync("yarn add -D install-peerdeps cross-env husky");
 execSync("yarn install-peerdeps -D eslint-config-airbnb --yarn");
 execSync("yarn add -D eslint-config-next");
-execSync("yarn add -D jest jest-environment-jsdom @types/jest @testing-library/react @testing-library/jest-dom @testing-library/user-event @types/lodash");
+execSync("yarn add -D jest jest-environment-jsdom @types/jest @testing-library/react @testing-library/jest-dom @testing-library/user-event @types/lodash supertest @types/supertest");
 setJsonFileProps({
   filePath: "package.json",
   propsPath: "scripts",
