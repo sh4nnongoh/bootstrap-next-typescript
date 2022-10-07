@@ -26,9 +26,14 @@ const UserProfile: NextPage<{
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const query = new URL(`${process.env.NEXT_PUBLIC_APP_URL}/api/login`);
-    query.searchParams.append("email", `${userEmail}`);
-    query.searchParams.append("password", `${USER_SECRET}`);
-    fetch(query, { method: "POST" })
+    fetch(query, { 
+      method: "POST",
+      body: JSON.stringify({
+        email: userEmail,
+        password: USER_SECRET,
+      }),
+      headers: { 'content-type': 'application/json' } 
+    })
       .then((result) => (result.json()))
       .then((result) => {
         console.log(result);

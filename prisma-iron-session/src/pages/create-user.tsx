@@ -10,13 +10,18 @@ const CreateUser: NextPage = () => {
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const query = new URL(`${process.env.NEXT_PUBLIC_APP_URL}/api/create-user`);
-    query.searchParams.append("user", JSON.stringify({
-      email: userEmail,
-      name: userEmail.split("@")[0],
-      isActive: true,
-      isAdmin: false
-    }));
-    fetch(query, { method: "POST" })
+    fetch(query, {
+      method: "POST",
+      body: JSON.stringify({
+        user: {
+          email: userEmail,
+          name: userEmail.split("@")[0],
+          isActive: true,
+          isAdmin: false
+        }
+      }),
+      headers: { "content-type": "application/json" }
+    })
       .then((result) => (result.json()))
       .then((result) => console.log(result))
       .catch((error) => console.error(error));

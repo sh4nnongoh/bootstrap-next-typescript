@@ -1,10 +1,22 @@
 {
   "data": [
     {
-      "email": "sh4nnongoh@gmail.com",
-      "name": "Shannon",
-      "isActive": true,
-      "isAdmin": true
+      "email": "admin@example.com",
+      "name": "admin",
+      "isAdmin": true,
+      "isActive": true
+    },
+    {
+      "email": "user_active@example.com",
+      "name": "user_active",
+      "isAdmin": false,
+      "isActive": true
+    },
+    {
+      "email": "user_inactive@example.com",
+      "name": "user_inactive",
+      "isAdmin": false,
+      "isActive": false
     }
   ]
 }

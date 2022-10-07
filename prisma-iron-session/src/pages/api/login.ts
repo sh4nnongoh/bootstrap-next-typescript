@@ -9,7 +9,7 @@ const handler = async (
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) => {
-  const { email, password } = req.query;
+  const { email, password } = req.body;
   if (req.method !== "POST" || !email || password !== USER_SECRET) {
     res.status(500).json({ message: "Invalid login request." });
     return;

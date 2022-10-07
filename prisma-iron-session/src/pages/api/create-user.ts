@@ -1,15 +1,15 @@
-import { PrismaClient, UserEvent } from "@prisma/client";
+import { PrismaClient } from "@prisma/client";
 import type { NextApiRequest, NextApiResponse } from "next";
 import { withSessionRoute } from "../../utils/withIronSession";
 type Data = {
   message: string
 }
-const handler = async (
+export const handler = async (
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) => {
   const { user: currentUser } = req.session;
-  const user = JSON.parse(req.query.user as string) as UserEvent;
+  const { user } = req.body;
   if (req.method !== "POST" || !currentUser?.isAdmin || !user) {
     res.status(500).json({ message: "Invalid Create User request." });
     return;
