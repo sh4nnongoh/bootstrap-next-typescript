@@ -17,14 +17,20 @@ setJsonFileProps({
     "db:reset": "dotenv -e .env.local -- yarn prisma migrate reset && yarn db:populate"
   }
 })
-const jestSetup = fs.readFileSync("src/tests/jest.setup.tsx", { encoding: "utf8" });
-const mockString = `
+const jestSetup = fs.readFileSync("src/tests/jest.setup.tsx", { encoding: "utf8" }).split('jest.mock("next/head",');
+const prefix = `
+import { SET_INITIAL_DB_STATE } from "./api/constants";
+`
+const postfix = `
 jest.mock("../utils/withIronSession", () => ({
   __esModule: true,
   withSessionRoute: (props: unknown) => props
 }));
+beforeAll(async () => {
+  await SET_INITIAL_DB_STATE();
+});
 `
-const updatedJestSetup = `${jestSetup}\n${mockString}\n`;
+const updatedJestSetup = `${jestSetup[0]}${prefix}\njest.mock("next/head",${jestSetup[1]}\n${postfix}\n`;
 fs.writeFileSync("src/tests/jest.setup.tsx", updatedJestSetup);
 execSync("yarn lint:fix");
 execSync("git reset");

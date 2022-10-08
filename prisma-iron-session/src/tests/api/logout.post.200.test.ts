@@ -1,5 +1,4 @@
 import { USER_ACTIVE } from "./constants";
-import setInitialDbState from "./utils/setInitialDbState";
 import logoutApi from "../../pages/api/logout";
 describe("/login", () => {
   let status: {};
@@ -7,7 +6,6 @@ describe("/login", () => {
   beforeEach(async () => {
     destroy = jest.fn().mockResolvedValue(null);
     status = jest.fn().mockReturnValue({ json: () => null });
-    await setInitialDbState();
   });
   describe("GIVEN no initial state", () => {
     describe("WHEN a POST request is made", () => {

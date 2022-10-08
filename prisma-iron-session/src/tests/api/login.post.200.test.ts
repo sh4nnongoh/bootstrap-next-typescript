@@ -1,6 +1,5 @@
 import { USER_SECRET } from "../../config";
 import { USER_ACTIVE } from "./constants";
-import setInitialDbState from "./utils/setInitialDbState";
 import loginApi from "../../pages/api/login";
 describe("/login", () => {
   let status: {};
@@ -8,7 +7,6 @@ describe("/login", () => {
   beforeEach(async () => {
     save = jest.fn().mockResolvedValue(null);
     status = jest.fn().mockReturnValue({ json: () => null });
-    await setInitialDbState();
   });
   describe("GIVEN no initial state", () => {
     describe("WHEN a POST request is made", () => {
