@@ -10,9 +10,9 @@ setJsonFileProps({
   filePath: "package.json",
   propsPath: "scripts",
   updatedProps: {
-    "test": "dotenv -e .env.local -- jest",
+    "test": "dotenv -e .env.local jest -i",
     "test:frontend": "jest src/tests/*.test.tsx",
-    "test:backend": "dotenv -e .env.local -- yarn jest src/tests/api/*.test.ts",
+    "test:backend": "dotenv -e .env.local jest -i src/tests/api/*.test.ts",
     "db:populate": "dotenv -e .env.local -- node ./scripts/db-add-user-events.js",
     "db:reset": "dotenv -e .env.local -- yarn prisma migrate reset && yarn db:populate"
   }
