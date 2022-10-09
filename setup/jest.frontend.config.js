@@ -20,7 +20,7 @@ module.exports = createJestConfig({
     "/api"
   ],
   collectCoverageFrom: [
-    "./src/**/[!api]*.{ts,tsx}"
+    "./src/**/*.tsx"
   ],
   coverageThreshold: {
     global: {
