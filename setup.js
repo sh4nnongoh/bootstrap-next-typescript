@@ -2,32 +2,25 @@ const { execSync } = require("child_process");
 const fs = require("fs");
 const { setJsonFileProps } = require("./utils/setJsonFileProps.js");
 execSync("mkdir -p src src/hooks src/contexts src/views src/components src/utils src/tests src/types");
-execSync("cp -r ./bootstrap-next-typescript/setup/scripts .");
-execSync("cp -r ./bootstrap-next-typescript/setup/.vscode .");
-execSync("cp -r ./bootstrap-next-typescript/setup/src/types src/");
-execSync("cp -r ./bootstrap-next-typescript/setup/src/tests src/");
-execSync("cp -r ./bootstrap-next-typescript/setup/src/utils src/");
 execSync("mv pages src/");
 execSync("mv styles src/");
-execSync("cp ./bootstrap-next-typescript/setup/.eslintignore .eslintignore");
-execSync("cp ./bootstrap-next-typescript/setup/.eslintrc.json .eslintrc.json");
-execSync("cp ./bootstrap-next-typescript/setup/jest.config.js jest.config.js");
-execSync("cp ./bootstrap-next-typescript/setup/postcss.config.js postcss.config.js");
-execSync("cp ./bootstrap-next-typescript/setup/tailwind.config.js tailwind.config.js");
-execSync("yarn add lodash");
+execSync("cp -r ./bootstrap-next-typescript/setup/ .");
+execSync("yarn add lodash dotenv");
 execSync("yarn add -D tailwindcss postcss autoprefixer");
 execSync("yarn add -D install-peerdeps cross-env husky");
 execSync("yarn install-peerdeps -D eslint-config-airbnb --yarn");
 execSync("yarn add -D eslint-config-next");
-execSync("yarn add -D jest jest-environment-jsdom @types/jest @testing-library/react @testing-library/jest-dom @testing-library/user-event @types/lodash supertest @types/supertest");
+execSync("yarn add -D jest jest-environment-jsdom ts-jest @types/jest @testing-library/react @testing-library/jest-dom @testing-library/user-event @types/lodash supertest @types/supertest");
 setJsonFileProps({
   filePath: "package.json",
   propsPath: "scripts",
   updatedProps: {
     "lint": "next lint -d .",
     "lint:fix": "next lint -d . --fix",
-    "test": "jest",
-    "update-version": "node scripts/update-version.js"
+    "update-version": "node scripts/update-version.js",
+    "test": "yarn test:frontend && yarn test:backend",
+    "test:frontend": "jest -c jest.frontend.config.js",
+    "test:backend": "jest -c jest.backend.config.js -i src/tests/api/"
   }
 })
 const app = fs.readFileSync("src/pages/_app.tsx", { encoding: "utf8" });

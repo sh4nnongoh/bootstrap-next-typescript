@@ -10,14 +10,11 @@ setJsonFileProps({
   filePath: "package.json",
   propsPath: "scripts",
   updatedProps: {
-    "test": "dotenv -e .env.local jest -i",
-    "test:frontend": "jest src/tests/*.test.tsx",
-    "test:backend": "dotenv -e .env.local jest -i src/tests/api/*.test.ts",
     "db:populate": "dotenv -e .env.local -- node ./scripts/db-add-user-events.js",
     "db:reset": "dotenv -e .env.local -- yarn prisma migrate reset && yarn db:populate"
   }
 })
-const jestSetup = fs.readFileSync("src/tests/jest.setup.tsx", { encoding: "utf8" }).split('jest.mock("next/head",');
+const jestSetup = fs.readFileSync("src/tests/jest.setup.ts", { encoding: "utf8" }).split('const environment');
 const prefix = `
 import { SET_INITIAL_DB_STATE } from "./api/constants";
 `
@@ -30,8 +27,8 @@ beforeAll(async () => {
   await SET_INITIAL_DB_STATE();
 });
 `
-const updatedJestSetup = `${jestSetup[0]}${prefix}\njest.mock("next/head",${jestSetup[1]}\n${postfix}\n`;
-fs.writeFileSync("src/tests/jest.setup.tsx", updatedJestSetup);
+const updatedJestSetup = `${jestSetup[0]}${prefix}\nconst environment${jestSetup[1]}\n${postfix}\n`;
+fs.writeFileSync("src/tests/jest.setup.ts", updatedJestSetup);
 execSync("yarn lint:fix");
 execSync("git reset");
 execSync("git add -- . ':!bootstrap-next-typescript'");

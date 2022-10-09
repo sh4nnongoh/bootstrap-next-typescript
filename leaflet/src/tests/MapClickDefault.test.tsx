@@ -18,7 +18,7 @@ describe(userStory, () => {
     await waitFor(() => screen.findByTestId("render-count-map-layer-1"));
   });
   it("shows the primary pin only after user clicks on the map", async () => {
-    const map = screen.getByRole("presentation");
+    const map = screen.getAllByRole("img")[0];
     expect(screen.queryByAltText("primary-pin")).not.toBeInTheDocument();
     userEvent.click(map as Element);
     await waitFor(() => screen.findByAltText("primary-pin"));

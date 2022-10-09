@@ -9,7 +9,7 @@ setJsonFileProps({
   filePath: "package.json",
   propsPath: "scripts",
   updatedProps: {
-    "test": `${packageJsonProps.scripts.test} --transformIgnorePatterns \"node_modules/(?!react-leaflet)/\"`
+    "test:frontend": `${packageJsonProps.scripts["test:frontend"]} --transformIgnorePatterns \"node_modules/(?!react-leaflet)/\"`
   }
 })
 const jestSetup = fs.readFileSync("src/tests/jest.setup.tsx", { encoding: "utf8" });

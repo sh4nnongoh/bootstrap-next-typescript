@@ -1,3 +1,7 @@
+/*
+ * For a detailed explanation regarding each configuration property and type check, visit:
+ * https://jestjs.io/docs/configuration
+ */
 const nextJest = require("next/jest");
 const createJestConfig = nextJest({
   dir: "./"
@@ -12,10 +16,11 @@ module.exports = createJestConfig({
   testPathIgnorePatterns: [
     "/bootstrap-next-typescript/",
     "/node_modules/",
-    "/.next/"
+    "/.next/",
+    "/api"
   ],
   collectCoverageFrom: [
-    "./src/**/*.{ts,tsx}"
+    "./src/**/[!api]*.{ts,tsx}"
   ],
   coverageThreshold: {
     global: {
