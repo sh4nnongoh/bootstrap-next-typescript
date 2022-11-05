@@ -27,5 +27,5 @@ const updatedGitIgnore = `${gitIgnore}\nprisma/data\n`;
 fs.writeFileSync(".gitignore", updatedGitIgnore);
 execSync("yarn lint:fix");
 execSync("git reset");
-execSync("git add -- . ':!bootstrap-next-typescript'");
+execSync("git add .");
 execSync("git commit -m 'arch: bootstrap-next-typescript/prisma'");

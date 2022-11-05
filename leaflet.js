@@ -34,5 +34,5 @@ const updatedGlobalsSetup = `${globalsCss}\n${globalsPostfix}\n`;
 fs.writeFileSync("src/styles/globals.css", updatedGlobalsSetup);
 execSync("yarn lint:fix");
 execSync("git reset");
-execSync("git add -- . ':!bootstrap-next-typescript'");
+execSync("git add .");
 execSync("git commit -m 'arch: bootstrap-next-typescript/leaflet'");

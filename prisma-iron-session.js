@@ -31,5 +31,5 @@ const updatedJestSetup = `${jestSetup[0]}${prefix}\nconst environment${jestSetup
 fs.writeFileSync("src/tests/jest.setup.ts", updatedJestSetup);
 execSync("yarn lint:fix");
 execSync("git reset");
-execSync("git add -- . ':!bootstrap-next-typescript'");
+execSync("git add .");
 execSync("git commit -m 'arch: bootstrap-next-typescript/prisma-iron-session'");
