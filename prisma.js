@@ -1,6 +1,6 @@
 const { execSync } = require("child_process");
 const fs = require("fs");
-const { setJsonFileProps } = require("./utils/setJsonFileProps");
+const { setJsonFileProps } = require("./lib/setJsonFileProps");
 execSync("mkdir -p prisma");
 execSync("cp -r ./bootstrap-next-typescript/prisma/prisma/* prisma");
 execSync("cp ./bootstrap-next-typescript/prisma/.env.local .");

@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 import {
   useState, ChangeEvent, FormEvent, useEffect
 } from "react";
-import { withSessionSsr } from "../utils/withIronSession";
+import { withSessionSsr } from "../lib/withIronSession";
 const CreateUser: NextPage = () => {
   const router = useRouter();
   const [userEmail, setUserEmail] = useState("");

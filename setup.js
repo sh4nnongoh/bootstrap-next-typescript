@@ -1,11 +1,10 @@
 const { execSync } = require("child_process");
 const fs = require("fs");
-const { setJsonFileProps } = require("./utils/setJsonFileProps.js");
+const { setJsonFileProps } = require("./lib/setJsonFileProps.js");
 const gitIgnore = fs.readFileSync(".gitignore", { encoding: "utf8" });
 const updatedGitIgnore = `${gitIgnore}\nbootstrap-next-typescript`;
 fs.writeFileSync(".gitignore", updatedGitIgnore);
-execSync("mkdir -p src src/hooks src/contexts src/views src/components src/utils src/tests src/types");
-// execSync("mv pages src/");
+execSync("mkdir -p src src/hooks src/contexts src/ui src/lib src/tests src/types");
 execSync("mv styles src/");
 execSync("rm -rf pages");
 execSync("cp -r ./bootstrap-next-typescript/setup/* .");

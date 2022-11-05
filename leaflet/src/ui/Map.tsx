@@ -9,7 +9,7 @@ import { useRef } from "react";
 import {
   CENTER, DEFAULT_ZOOM, MAX_BOUNDS_VISCOUSITY, ONE_MAP_BOUNDS
 } from "../constants";
-import MapLayer from "../components/MapLayer";
+import MapLayer from "./MapLayer";
 const Map = () => {
   const renderCounter = useRef(0);
   renderCounter.current += 1;

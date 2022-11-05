@@ -1,7 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 import type { NextApiRequest, NextApiResponse } from "next";
 import { USER_SECRET } from "../../config";
-import { withSessionRoute } from "../../utils/withIronSession";
+import { withSessionRoute } from "../../lib/withIronSession";
 type Data = {
   message: string
 }

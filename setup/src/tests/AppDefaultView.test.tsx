@@ -1,7 +1,7 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 import App from "../pages";
-import getMetaContent from "../utils/getMetaContent";
+import getMetaContent from "../lib/getMetaContent";
 const userStory = `
 Given no inital state,
 When user navigates to the web page,

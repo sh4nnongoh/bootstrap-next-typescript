@@ -1,5 +1,5 @@
 const { execSync } = require("child_process");
-const { setJsonFileProps } = require("./utils/setJsonFileProps");
+const { setJsonFileProps } = require("./lib/setJsonFileProps");
 const fs = require("fs");
 execSync("node ./bootstrap-next-typescript/prisma.js");
 execSync("cp -r ./bootstrap-next-typescript/prisma-iron-session/src/* src/");
@@ -19,7 +19,7 @@ const prefix = `
 import { SET_INITIAL_DB_STATE } from "./api/constants";
 `
 const postfix = `
-jest.mock("../utils/withIronSession", () => ({
+jest.mock("../lib/withIronSession", () => ({
   __esModule: true,
   withSessionRoute: (props: unknown) => props
 }));
