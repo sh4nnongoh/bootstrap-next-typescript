@@ -21,6 +21,7 @@ setJsonFileProps({
   filePath: "package.json",
   propsPath: "scripts",
   updatedProps: {
+    "prepare": "husky install",
     "lint": "next lint -d .",
     "lint:fix": "next lint -d . --fix",
     "update-version": "node scripts/update-version.js",
