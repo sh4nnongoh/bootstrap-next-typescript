@@ -11,8 +11,8 @@ describe(userStory, () => {
   beforeEach(() => {
     render(<App />);
   });
-  it("shows the phrase Next.js!", () => {
-    const linkElement = screen.getByText(/Next.js!/i);
+  it("shows the default phrase", () => {
+    const linkElement = screen.getByText("Get started by editing");
     expect(linkElement).toBeInTheDocument();
   });
   it("shows the correct headers", () => {
