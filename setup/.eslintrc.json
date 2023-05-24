@@ -31,24 +31,31 @@
       "@typescript-eslint"
     ],
     "rules": {
-      "complexity": [
-        "warn",
-        20
-      ],
-      "max-len": [
-        "warn",
-        {
-          "code": 120
-        }
-      ],
-      "import/newline-after-import": "off",
-      "no-multiple-empty-lines": [
-        "error",
-        {
-          "max": 0
-        }
-      ],
-      "react/prop-types": "off",
-      "jest/valid-title": "off"
+        "react/function-component-definition": [
+            2,
+            {
+                "namedComponents": "arrow-function"
+            }
+        ],
+        "lines-around-directive": "off",
+        "complexity": [
+            "warn",
+            20
+        ],
+        "max-len": [
+            "warn",
+            {
+                "code": 120
+            }
+        ],
+        "import/newline-after-import": "off",
+        "no-multiple-empty-lines": [
+            "error",
+            {
+                "max": 0
+            }
+        ],
+        "react/prop-types": "off",
+        "jest/valid-title": "off"
     }
-  }
+}

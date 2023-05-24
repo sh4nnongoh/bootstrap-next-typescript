@@ -4,7 +4,7 @@ const { setJsonFileProps } = require("./lib/setJsonFileProps.js");
 const gitIgnore = fs.readFileSync(".gitignore", { encoding: "utf8" });
 const updatedGitIgnore = `${gitIgnore}\nbootstrap-next-typescript`;
 fs.writeFileSync(".gitignore", updatedGitIgnore);
-execSync("rm .eslintrc.json");
+execSync("rm .eslintrc.json src/app/page.tsx src/app/layout.tsx");
 execSync("mkdir -p src src/hooks src/contexts src/ui src/lib src/tests src/types src/pages src/pages/api");
 execSync("cp -r ./bootstrap-next-typescript/setup/* .");
 execSync("cp -r ./bootstrap-next-typescript/setup/.vscode .");
@@ -21,6 +21,9 @@ setJsonFileProps({
   filePath: "package.json",
   propsPath: "scripts",
   updatedProps: {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
     "prepare": "husky install",
     "lint": "next lint -d .",
     "lint:fix": "next lint -d . --fix",

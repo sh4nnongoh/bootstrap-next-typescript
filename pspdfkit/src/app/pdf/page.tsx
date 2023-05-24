@@ -1,6 +1,7 @@
+'use client';
 import { NextPage } from "next";
 import { useRef } from "react";
-import usePSPDFKit from "../hooks/usePSPDFKit";
+import usePSPDFKit from "../../hooks/usePSPDFKit";
 const App: NextPage = () => {
   const containerRef = useRef(null);
   usePSPDFKit({

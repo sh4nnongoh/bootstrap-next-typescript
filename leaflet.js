@@ -10,17 +10,18 @@ setJsonFileProps({
   filePath: "package.json",
   propsPath: "scripts",
   updatedProps: {
+    ...packageJsonProps.scripts,
     "test:frontend": `${packageJsonProps.scripts["test:frontend"]} --transformIgnorePatterns \"node_modules/(?!react-leaflet)/\"`
   }
 })
-const jestSetup = fs.readFileSync("src/tests/jest.setup.tsx", { encoding: "utf8" });
+const jestSetup = fs.readFileSync("jest.setup.js", { encoding: "utf8" });
 const jestPostfix = `
 const noop = () => {};
 Object.defineProperty(window, "scrollTo", { value: noop, writable: true });
 `
 const updatedJestSetup = `${jestSetup}\n${jestPostfix}\n`;
-fs.writeFileSync("src/tests/jest.setup.tsx", updatedJestSetup);
-const globalsCss = fs.readFileSync("src/styles/globals.css", { encoding: "utf8" });
+fs.writeFileSync("jest.setup.js", updatedJestSetup);
+const globalsCss = fs.readFileSync("src/app/globals.css", { encoding: "utf8" });
 const globalsPostfix = `
 .leaflet-container {
   width: 100%;
@@ -31,7 +32,7 @@ const globalsPostfix = `
 }
 `
 const updatedGlobalsSetup = `${globalsCss}\n${globalsPostfix}\n`;
-fs.writeFileSync("src/styles/globals.css", updatedGlobalsSetup);
+fs.writeFileSync("src/app/globals.css", updatedGlobalsSetup);
 execSync("yarn lint:fix");
 execSync("git reset");
 execSync("git add .");
