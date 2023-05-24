@@ -6,7 +6,7 @@ Uses a series of node scripts to further bootstrap the default Create Next-App T
 
 ```
 // Create a new Next Typescript App
-yarn create next-app my-app --ts --tailwind --eslint --src-dir
+yarn create next-app my-app --ts --tailwind --eslint --src-dir --app --import-alias "@/*"
 
 // Follow the prompts, and select the defaults
 // ...

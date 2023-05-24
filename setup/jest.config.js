@@ -7,20 +7,18 @@ const createJestConfig = nextJest({
   dir: "./"
 });
 module.exports = createJestConfig({
-  setupFilesAfterEnv: ["<rootDir>/src/tests/jest.setup.tsx"],
-  moduleNameMapper: {
-    "^@/components/(.*)$": "<rootDir>/src/components/$1",
-    "^@/pages/(.*)$": "<rootDir>/src/pages/$1"
-  },
+  setupFilesAfterEnv: ["<rootDir>/jest.setup.js"],
   testEnvironment: "jest-environment-jsdom",
   testPathIgnorePatterns: [
     "/bootstrap-next-typescript/",
     "/node_modules/",
     "/.next/",
-    "/api"
   ],
   collectCoverageFrom: [
-    "./src/**/*.tsx"
+    "./src/**/*.tsx",
+    "./src/**/*.ts",
+    "./src/**/*.jsx",
+    "./src/**/*.js"
   ],
   coverageThreshold: {
     global: {

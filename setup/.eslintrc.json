@@ -1,73 +1,54 @@
 {
     "env": {
-        "browser": true,
-        "jest": true,
-        "es2021": true
+      "browser": true,
+      "es2021": true,
+      "node": true
     },
     "extends": [
-        "airbnb",
-        "next/core-web-vitals"
+      "airbnb",
+      "airbnb-typescript",
+      "airbnb/hooks",
+      "next/core-web-vitals"
+    ],
+    "overrides": [
+      {
+        "files": [
+          "**/__tests__/**/*.[jt]s?(x)",
+          "**/?(*.)+(spec|test).[jt]s?(x)"
+        ],
+        "extends": [
+          "plugin:testing-library/react"
+        ]
+      }
+    ],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+      "tsconfigRootDir": ".",
+      "project": ["./tsconfig.json"]
+    },
+    "plugins": [
+      "testing-library",
+      "@typescript-eslint"
     ],
     "rules": {
-        "react/function-component-definition": [
-            2,
-            {
-                "namedComponents": "arrow-function"
-            }
-        ],
-        "no-use-before-define": "error",
-        "react/jsx-filename-extension": [
-            "off",
-            {
-                "extensions": [
-                    ".svg"
-                ]
-            }
-        ],
-        "import/extensions": [
-            "error",
-            "ignorePackages",
-            {
-                "ts": "never",
-                "tsx": "never"
-            }
-        ],
-        "prefer-arrow-callback": [
-            "error",
-            {
-                "allowUnboundThis": false
-            }
-        ],
-        "comma-dangle": [
-            "error",
-            "never"
-        ],
-        "complexity": [
-            "warn",
-            20
-        ],
-        "quotes": [
-            "error",
-            "double"
-        ],
-        "max-len": [
-            "warn",
-            {
-                "code": 120
-            }
-        ],
-        "import/newline-after-import": "off",
-        "no-multiple-empty-lines": [
-            "error",
-            {
-                "max": 0
-            }
-        ],
-        "react-hooks/rules-of-hooks": "error",
-        "react-hooks/exhaustive-deps": "warn",
-        "import/prefer-default-export": "off",
-        "react/prop-types": "off",
-        "jest/valid-title": "off",
-        "import/no-extraneous-dependencies": ["error", {"devDependencies": ["**/*.test.{js,ts,jsx,tsx}", "**/*.spec.{js,ts,jsx,tsx}"]}]
+      "complexity": [
+        "warn",
+        20
+      ],
+      "max-len": [
+        "warn",
+        {
+          "code": 120
+        }
+      ],
+      "import/newline-after-import": "off",
+      "no-multiple-empty-lines": [
+        "error",
+        {
+          "max": 0
+        }
+      ],
+      "react/prop-types": "off",
+      "jest/valid-title": "off"
     }
-}
+  }
