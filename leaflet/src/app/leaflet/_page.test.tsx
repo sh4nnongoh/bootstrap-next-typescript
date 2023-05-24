@@ -1,7 +1,6 @@
-import React from "react";
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import LeafletMap from "../app/leaflet/page";
+import LeafletMap from "./page";
 const userStory = `
 Given no inital state,
 When user navigates to the home page,
