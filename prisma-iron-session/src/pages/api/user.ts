@@ -1,7 +1,7 @@
 import { UserEvent } from '@/types/schema';
 import { isEmpty } from 'lodash';
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { USER_EVENT_CREATE, USER_EVENT_READ } from '@/constants';
+import { USER_EVENT_CREATE, USER_EVENT_READ } from '@/config/kysely';
 import { createId } from '@paralleldrive/cuid2';
 import { withSessionRoute } from '../../lib/withIronSession';
 type Data = {

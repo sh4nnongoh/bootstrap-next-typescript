@@ -1,10 +1,10 @@
-import { withIronSessionApiRoute, withIronSessionSsr } from "iron-session/next";
+import { withIronSessionApiRoute, withIronSessionSsr } from 'iron-session/next';
 import {
   GetServerSidePropsContext,
   GetServerSidePropsResult,
-  NextApiHandler
-} from "next";
-import { ironOptions } from "../constants";
+  NextApiHandler,
+} from 'next';
+import { ironOptions } from '@/config/iron-session';
 export function withSessionRoute(handler: NextApiHandler) {
   return withIronSessionApiRoute(handler, ironOptions);
 }
@@ -16,7 +16,7 @@ export function withSessionSsr<
   handler: (
     // eslint-disable-next-line no-unused-vars
     context: GetServerSidePropsContext,
-  ) => GetServerSidePropsResult<P> | Promise<GetServerSidePropsResult<P>>
+  ) => GetServerSidePropsResult<P> | Promise<GetServerSidePropsResult<P>>,
 ) {
   return withIronSessionSsr(handler, ironOptions);
 }

@@ -1,4 +1,4 @@
-import { USER_SECRET } from '../../constants';
+import { USER_SECRET } from '../../config/iron-session';
 import { USER_ACTIVE } from './_test-utils';
 import loginApi from './login';
 jest.mock('../../lib/withIronSession', () => ({

@@ -1,7 +1,8 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { UserEvent } from '@/types/schema';
-import { USER_EVENT_READ, USER_SECRET } from '../../constants';
-import { withSessionRoute } from '../../lib/withIronSession';
+import { USER_EVENT_READ } from '@/config/kysely';
+import { USER_SECRET } from '@/config/iron-session';
+import { withSessionRoute } from '@/lib/withIronSession';
 type Data = {
   message: string
 };

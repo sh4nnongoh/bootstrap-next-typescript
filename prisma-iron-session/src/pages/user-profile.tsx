@@ -6,9 +6,9 @@ import {
   ChangeEvent,
   FC, FormEvent, ReactNode, useState,
 } from 'react';
-import { UserEvent } from '../types/schema';
-import { USER_SECRET } from '../constants';
-import { withSessionSsr } from '../lib/withIronSession';
+import { UserEvent } from '@/types/schema';
+import { USER_SECRET } from '@/config/iron-session';
+import { withSessionSsr } from '@/lib/withIronSession';
 const Layout: FC<{ children: ReactNode }> = ({ children }) => (
   <div className="flex flex-col w-screen items-center p-10">
     {children}
