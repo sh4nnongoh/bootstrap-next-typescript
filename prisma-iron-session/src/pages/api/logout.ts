@@ -1,15 +1,15 @@
-import type { NextApiRequest, NextApiResponse } from "next";
-import { withSessionRoute } from "../../lib/withIronSession";
+import type { NextApiRequest, NextApiResponse } from 'next';
+import { withSessionRoute } from '../../lib/withIronSession';
 type Data = {
   message: string
-}
+};
 const handler = async (
   req: NextApiRequest,
-  res: NextApiResponse<Data>
+  res: NextApiResponse<Data>,
 ) => {
   const { user } = req.session;
-  if (req.method !== "POST" || !user) {
-    res.status(500).json({ message: "Invalid logout request." });
+  if (req.method !== 'POST' || !user) {
+    res.status(500).json({ message: 'Invalid logout request.' });
     return;
   }
   req.session.destroy();

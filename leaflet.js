@@ -3,7 +3,7 @@ const fs = require("fs");
 const { setJsonFileProps } = require("./lib/setJsonFileProps");
 execSync("cp -r ./bootstrap-next-typescript/leaflet/src/* src/");
 execSync("cp -r ./bootstrap-next-typescript/leaflet/public/* public/");
-execSync("yarn add -D @types/leaflet");
+execSync("yarn add @types/leaflet");
 execSync("yarn add leaflet react-leaflet");
 const packageJsonProps = JSON.parse(fs.readFileSync("package.json", { encoding: "utf8" }));
 setJsonFileProps({

@@ -1,34 +1,48 @@
 const { execSync } = require("child_process");
 const { setJsonFileProps } = require("./lib/setJsonFileProps");
 const fs = require("fs");
-execSync("node ./bootstrap-next-typescript/prisma.js");
-execSync("cp -r ./bootstrap-next-typescript/prisma-iron-session/src/* src/");
-execSync("cp -r ./bootstrap-next-typescript/prisma-iron-session/scripts/* scripts");
-execSync("cp ./bootstrap-next-typescript/prisma-iron-session/src/config.ts src");
-execSync("yarn add iron-session");
+const { getJsonFileProp } = require("./lib/getJsonFileProp");
+execSync("mkdir -p prisma");
+execSync("cp -r ./bootstrap-next-typescript/prisma-iron-session/* .");
+execSync("cp ./bootstrap-next-typescript/prisma-iron-session/.env.local .");
+execSync("npm i -g dotenv-cli");
+execSync("yarn add @paralleldrive/cuid2 better-sqlite3 @types/better-sqlite3");
+execSync("yarn add kysely prisma prisma-kysely iron-session");
+setJsonFileProps({
+  filePath: "package.json",
+  propsPath: "prisma",
+  updatedProps: {
+    "schema": "./prisma/schema.prisma"
+  }
+})
 setJsonFileProps({
   filePath: "package.json",
   propsPath: "scripts",
   updatedProps: {
-    "db:populate": "dotenv -e .env.local -- node ./scripts/db-add-user-events.js",
+    ...getJsonFileProp({
+      filePath: "package.json",
+      propsPath: "scripts",
+    }),
+    "db:migrate": "dotenv -e .env.local -- yarn prisma migrate dev",
+    "db:populate": "dotenv -e .env.local -- ts-node ./scripts/db-add-user-events.ts",
     "db:reset": "dotenv -e .env.local -- yarn prisma migrate reset && yarn db:populate"
   }
 })
-const jestSetup = fs.readFileSync("src/tests/jest.setup.ts", { encoding: "utf8" }).split('const environment');
-const prefix = `
-import { SET_INITIAL_DB_STATE } from "./api/constants";
-`
-const postfix = `
-jest.mock("../lib/withIronSession", () => ({
-  __esModule: true,
-  withSessionRoute: (props: unknown) => props
-}));
+const jestBeSetup = fs.readFileSync("jest-be.setup.ts", { encoding: "utf8" });
+const updatedJestBeSetup = `${jestBeSetup}\n
+import { SET_INITIAL_DB_STATE } from '@/pages/api/_test-utils';
 beforeAll(async () => {
   await SET_INITIAL_DB_STATE();
 });
-`
-const updatedJestSetup = `${jestSetup[0]}${prefix}\nconst environment${jestSetup[1]}\n${postfix}\n`;
-fs.writeFileSync("src/tests/jest.setup.ts", updatedJestSetup);
+\n`;
+fs.writeFileSync("jest-be.setup.ts", updatedJestBeSetup);
+const eslintIgnore = fs.readFileSync(".eslintignore", { encoding: "utf8" });
+const updatedEslintIgnore = `${eslintIgnore}\n
+src/types/schema.ts
+\n`;
+fs.writeFileSync(".eslintignore", updatedEslintIgnore);
+
+execSync("yarn db:migrate --name create-user");
 execSync("yarn lint:fix");
 execSync("git reset");
 execSync("git add .");

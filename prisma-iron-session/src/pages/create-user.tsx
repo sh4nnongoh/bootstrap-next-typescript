@@ -1,20 +1,20 @@
 /* eslint-disable no-console */
-import { UserEvent } from "@prisma/client";
-import { isEmpty } from "lodash";
-import type { NextPage } from "next";
-import { useRouter } from "next/router";
+import { isEmpty } from 'lodash';
+import type { NextPage } from 'next';
+import { useRouter } from 'next/router';
 import {
-  useState, ChangeEvent, FormEvent, useEffect
-} from "react";
-import { withSessionSsr } from "../lib/withIronSession";
+  useState, ChangeEvent, FormEvent, useEffect,
+} from 'react';
+import { UserEvent } from '../types/schema';
+import { withSessionSsr } from '../lib/withIronSession';
 const CreateUser: NextPage = () => {
   const router = useRouter();
-  const [userEmail, setUserEmail] = useState("");
+  const [userEmail, setUserEmail] = useState('');
   const [users, setUsers] = useState<Record<string, UserEvent>>({});
   console.log(users);
   useEffect(() => {
     fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/user`, {
-      method: "GET"
+      method: 'GET',
     })
       .then((result) => (result.json()))
       .then(({ data }) => setUsers(data))
@@ -27,16 +27,16 @@ const CreateUser: NextPage = () => {
     event.preventDefault();
     const query = new URL(`${process.env.NEXT_PUBLIC_APP_URL}/api/user`);
     fetch(query, {
-      method: "POST",
+      method: 'POST',
       body: JSON.stringify({
         user: {
           email: userEmail,
-          name: userEmail.split("@")[0],
+          name: userEmail.split('@')[0],
           isActive: true,
-          isAdmin: false
-        }
+          isAdmin: false,
+        },
       }),
-      headers: { "content-type": "application/json" }
+      headers: { 'content-type': 'application/json' },
     })
       .then((result) => (result.json()))
       .then((result) => {
@@ -64,7 +64,7 @@ const CreateUser: NextPage = () => {
       <div>
         Existing Users
         {Object.values(users).map(({
-          id, userId, createdAt, email, name, isActive, isAdmin
+          id, userId, createdAt, email, name, isActive, isAdmin,
         }) => (
           <div key={id} className="grid grid-cols-2 m-10">
             <div>id:</div>
@@ -78,9 +78,9 @@ const CreateUser: NextPage = () => {
             <div>name:</div>
             <div>{name}</div>
             <div>isActive:</div>
-            <div>{isActive ? "True" : "False"}</div>
+            <div>{isActive ? 'True' : 'False'}</div>
             <div>isAdmin:</div>
-            <div>{isAdmin ? "True" : "False"}</div>
+            <div>{isAdmin ? 'True' : 'False'}</div>
           </div>
         ))}
       </div>
@@ -92,13 +92,13 @@ export const getServerSideProps = withSessionSsr(({ req }) => {
   const { user = null } = req.session;
   if (!user?.isAdmin) {
     return {
-      notFound: true
+      notFound: true,
     };
   }
   return {
     props: {
-      user
-    }
+      user,
+    },
   };
 });
 export default CreateUser;

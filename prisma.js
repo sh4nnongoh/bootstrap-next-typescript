@@ -5,8 +5,8 @@ execSync("mkdir -p prisma");
 execSync("cp -r ./bootstrap-next-typescript/prisma/prisma/* prisma");
 execSync("cp ./bootstrap-next-typescript/prisma/.env.local .");
 execSync("npm i -g dotenv-cli");
-execSync("yarn add -D prisma sqlite3");
-execSync("yarn add @prisma/client");
+execSync("yarn add prisma better-sqlite3 prisma-kysely");
+execSync("yarn add kysely");
 setJsonFileProps({
   filePath: "package.json",
   propsPath: "prisma",
@@ -23,7 +23,7 @@ setJsonFileProps({
 })
 execSync("yarn db:migrate --name create-user");
 const gitIgnore = fs.readFileSync(".gitignore", { encoding: "utf8" });
-const updatedGitIgnore = `${gitIgnore}\nprisma/data\n`;
+const updatedGitIgnore = `${gitIgnore}\ndb.sqlite\n`;
 fs.writeFileSync(".gitignore", updatedGitIgnore);
 execSync("yarn lint:fix");
 execSync("git reset");

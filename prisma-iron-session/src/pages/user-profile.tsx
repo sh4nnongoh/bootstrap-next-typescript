@@ -1,15 +1,15 @@
 /* eslint-disable no-console */
-import { UserEvent } from "@prisma/client";
-import { isEmpty } from "lodash";
-import type { NextPage } from "next";
-import { useRouter } from "next/router";
+import { isEmpty } from 'lodash';
+import type { NextPage } from 'next';
+import { useRouter } from 'next/router';
 import {
   ChangeEvent,
-  FC, FormEvent, ReactNode, useState
-} from "react";
-import { USER_SECRET } from "../config";
-import { withSessionSsr } from "../lib/withIronSession";
-const Layout: FC<{children: ReactNode}> = ({ children }) => (
+  FC, FormEvent, ReactNode, useState,
+} from 'react';
+import { UserEvent } from '../types/schema';
+import { USER_SECRET } from '../constants';
+import { withSessionSsr } from '../lib/withIronSession';
+const Layout: FC<{ children: ReactNode }> = ({ children }) => (
   <div className="flex flex-col w-screen items-center p-10">
     {children}
   </div>
@@ -18,7 +18,7 @@ const UserProfile: NextPage<{
   user: UserEvent | null
 }> = (props) => {
   const { user } = props;
-  const [userEmail, setUserEmail] = useState("");
+  const [userEmail, setUserEmail] = useState('');
   const router = useRouter();
   const handleInput = (event: ChangeEvent<HTMLInputElement>) => {
     setUserEmail(event.target.value);
@@ -26,13 +26,13 @@ const UserProfile: NextPage<{
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const query = new URL(`${process.env.NEXT_PUBLIC_APP_URL}/api/login`);
-    fetch(query, { 
-      method: "POST",
+    fetch(query, {
+      method: 'POST',
       body: JSON.stringify({
         email: userEmail,
         password: USER_SECRET,
       }),
-      headers: { 'content-type': 'application/json' } 
+      headers: { 'content-type': 'application/json' },
     })
       .then((result) => (result.json()))
       .then((result) => {
@@ -43,7 +43,7 @@ const UserProfile: NextPage<{
   };
   const handleLogout = () => {
     const query = new URL(`${process.env.NEXT_PUBLIC_APP_URL}/api/logout`);
-    fetch(query, { method: "POST" })
+    fetch(query, { method: 'POST' })
       .then((result) => (result.json()))
       .then((result) => {
         console.log(result);
@@ -71,13 +71,13 @@ const UserProfile: NextPage<{
     );
   }
   const {
-    id, userId, createdAt, email, name, isActive, isAdmin
+    id, userId, createdAt, email, name, isActive, isAdmin,
   } = user;
   return (
     <Layout>
       <div className="p-10 font-bold">
         Welcome
-        {" "}
+        {' '}
         {name}
         ! View your details below.
       </div>
@@ -93,9 +93,9 @@ const UserProfile: NextPage<{
         <div>name:</div>
         <div>{name}</div>
         <div>isActive:</div>
-        <div>{isActive ? "True" : "False"}</div>
+        <div>{isActive ? 'True' : 'False'}</div>
         <div>isAdmin:</div>
-        <div>{isAdmin ? "True" : "False"}</div>
+        <div>{isAdmin ? 'True' : 'False'}</div>
       </div>
       <button type="button" className="border rounded px-2" onClick={handleLogout}>Logout</button>
     </Layout>
@@ -105,8 +105,8 @@ export const getServerSideProps = withSessionSsr(({ req }) => {
   const { user = null } = req.session;
   return {
     props: {
-      user
-    }
+      user,
+    },
   };
 });
 export default UserProfile;

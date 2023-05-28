@@ -4,7 +4,7 @@ import {
   GetServerSidePropsResult,
   NextApiHandler
 } from "next";
-import { ironOptions } from "../config";
+import { ironOptions } from "../constants";
 export function withSessionRoute(handler: NextApiHandler) {
   return withIronSessionApiRoute(handler, ironOptions);
 }

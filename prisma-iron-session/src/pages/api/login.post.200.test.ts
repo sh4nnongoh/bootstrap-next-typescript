@@ -1,28 +1,32 @@
-import { USER_SECRET } from "../../config";
-import { USER_ACTIVE } from "./constants";
-import loginApi from "../../pages/api/login";
-describe("/login", () => {
+import { USER_SECRET } from '../../constants';
+import { USER_ACTIVE } from './_test-utils';
+import loginApi from './login';
+jest.mock('../../lib/withIronSession', () => ({
+  __esModule: true,
+  withSessionRoute: (props: unknown) => props,
+}));
+describe('/login', () => {
   let status: {};
   let save: () => null;
   beforeEach(async () => {
     save = jest.fn().mockResolvedValue(null);
     status = jest.fn().mockReturnValue({ json: () => null });
   });
-  describe("GIVEN no initial state", () => {
-    describe("WHEN a POST request is made", () => {
-      it("THEN the user gets a session", async () => {
+  describe('GIVEN no initial state', () => {
+    describe('WHEN a POST request is made', () => {
+      it('THEN the user gets a session', async () => {
         const req = {
-          method: "POST",
+          method: 'POST',
           body: { email: USER_ACTIVE.email, password: USER_SECRET },
           headers: {
-            cookie: ""
+            cookie: '',
           },
           session: {
-            save
-          }
+            save,
+          },
         };
         const res = {
-          status
+          status,
         };
         // @ts-ignore
         await loginApi(req, res);

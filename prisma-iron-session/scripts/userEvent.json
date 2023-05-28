@@ -5,32 +5,36 @@
       "userId": "cl8zfkhhr0003xttpxvsd237k",
       "email": "admin@example.com",
       "name": "admin",
-      "isAdmin": true,
-      "isActive": true
+      "createdAt": "1996-12-19T16:39:50-08:00",
+      "isAdmin": 1,
+      "isActive": 1
     },
     {
       "id": "cl8zfkhhr0004xttpi2aei3ul",
       "userId": "cl8zfkhhr0002xttprfz4zeeb",
       "email": "user_active@example.com",
       "name": "user_active",
-      "isAdmin": false,
-      "isActive": true
+      "createdAt": "1996-12-19T16:39:51-08:00",
+      "isAdmin": 0,
+      "isActive": 1
     },
     {
       "id": "cl8zfkhhr0004xttpi2aei3uz",
       "userId": "cl8zfkhhr0002xttprfz4zeeb",
       "email": "user_active@example.com",
       "name": "user_active",
-      "isAdmin": false,
-      "isActive": true
+      "createdAt": "1996-12-19T16:39:52-08:00",
+      "isAdmin": 0,
+      "isActive": 1
     },
     {
       "id": "cl8zfkhhr0001xttpdyzkw8kr",
       "userId": "cl8zfkhhr0005xttpz4nue2b9",
       "email": "user_inactive@example.com",
       "name": "user_inactive",
-      "isAdmin": false,
-      "isActive": false
+      "createdAt": "1996-12-19T16:39:53-08:00",
+      "isAdmin": 0,
+      "isActive": 0
     }
   ]
 }

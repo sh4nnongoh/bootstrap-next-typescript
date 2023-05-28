@@ -1,27 +1,31 @@
-import { USER_ACTIVE } from "./constants";
-import logoutApi from "../../pages/api/logout";
-describe("/login", () => {
+import { USER_ACTIVE } from './_test-utils';
+import logoutApi from './logout';
+jest.mock('../../lib/withIronSession', () => ({
+  __esModule: true,
+  withSessionRoute: (props: unknown) => props,
+}));
+describe('/logout', () => {
   let status: {};
   let destroy: () => null;
   beforeEach(async () => {
     destroy = jest.fn().mockResolvedValue(null);
     status = jest.fn().mockReturnValue({ json: () => null });
   });
-  describe("GIVEN no initial state", () => {
-    describe("WHEN a POST request is made", () => {
+  describe('GIVEN no initial state', () => {
+    describe('WHEN a POST request is made', () => {
       it("THEN the user's session gets destroyed", async () => {
         const req = {
-          method: "POST",
+          method: 'POST',
           headers: {
-            cookie: ""
+            cookie: '',
           },
           session: {
             user: USER_ACTIVE,
-            destroy
-          }
+            destroy,
+          },
         };
         const res = {
-          status
+          status,
         };
         // @ts-ignore
         await logoutApi(req, res);
