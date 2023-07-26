@@ -4,8 +4,7 @@ const fs = require("fs");
 const { getJsonFileProp } = require("./lib/getJsonFileProp");
 execSync("mkdir -p prisma");
 execSync("cp -r ./bootstrap-next-typescript/prisma-iron-session/* .");
-execSync("cp ./bootstrap-next-typescript/prisma-iron-session/.env.local .");
-execSync("npm i -g dotenv-cli");
+execSync("cp ./bootstrap-next-typescript/prisma-iron-session/.env.development .");
 execSync("yarn add @paralleldrive/cuid2 better-sqlite3 @types/better-sqlite3");
 execSync("yarn add kysely prisma prisma-kysely iron-session");
 setJsonFileProps({
@@ -23,9 +22,9 @@ setJsonFileProps({
       filePath: "package.json",
       propsPath: "scripts",
     }),
-    "db:migrate": "dotenv -e .env.local -- yarn prisma migrate dev",
-    "db:populate": "dotenv -e .env.local -- ts-node ./scripts/db-add-user-events.ts",
-    "db:reset": "dotenv -e .env.local -- yarn prisma migrate reset && yarn db:populate"
+    "db:migrate": "yarn prisma migrate dev",
+    "db:populate": "ts-node ./scripts/db-add-user-events.ts",
+    "db:reset": "yarn prisma migrate reset && yarn db:populate"
   }
 })
 const jestBeSetup = fs.readFileSync("jest-be.setup.ts", { encoding: "utf8" });
