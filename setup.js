@@ -61,7 +61,7 @@ setJsonFileProps({
 setJsonFileProps({
   filePath: ".eslintrc.json",
   propsPath: "extends",
-  updatedProps: ["airbnb", 'airbnb-typescript', "airbnb/hooks", "next/core-web-vitals"]
+  updatedProps: ["airbnb", 'airbnb-typescript', "next/core-web-vitals"]
 })
 execSync("yarn lint:fix");
 execSync("yarn husky install");
