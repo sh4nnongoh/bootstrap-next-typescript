@@ -29,7 +29,7 @@ setJsonFileProps({
 })
 const jestBeSetup = fs.readFileSync("jest-be.setup.ts", { encoding: "utf8" });
 const updatedJestBeSetup = `${jestBeSetup}\n
-import { SET_INITIAL_DB_STATE } from '@/pages/api/_test-utils';
+import { SET_INITIAL_DB_STATE } from '@/test-utils';
 beforeAll(async () => {
   await SET_INITIAL_DB_STATE();
 });
