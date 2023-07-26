@@ -1,6 +1,6 @@
 import {
   ADMIN, GET_USER_BY_EMAIL, TEST_REPEATED_USER,
-} from './_test-utils';
+} from '../../test-utils';
 import { handler as userApi } from './user';
 jest.mock('../../lib/withIronSession', () => ({
   __esModule: true,

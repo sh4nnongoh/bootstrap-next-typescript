@@ -1,5 +1,5 @@
 import { USER_SECRET } from '../../config/iron-session';
-import { USER_ACTIVE } from './_test-utils';
+import { USER_ACTIVE } from '../../test-utils';
 import loginApi from './login';
 jest.mock('../../lib/withIronSession', () => ({
   __esModule: true,

@@ -1,4 +1,4 @@
-import { USER_ACTIVE } from './_test-utils';
+import { USER_ACTIVE } from '../../test-utils';
 import { handler as userApi } from './user';
 jest.mock('../../lib/withIronSession', () => ({
   __esModule: true,

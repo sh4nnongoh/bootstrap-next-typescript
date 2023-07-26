@@ -1,6 +1,6 @@
 import {
   ADMIN, USER_ACTIVE, USER_INACTIVE,
-} from './_test-utils';
+} from '../../test-utils';
 import { handler as userApi } from './user';
 jest.mock('../../lib/withIronSession', () => ({
   __esModule: true,

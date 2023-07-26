@@ -3,8 +3,8 @@ import {
   SqliteDialect,
 } from 'kysely';
 import Database from 'better-sqlite3';
-import { data } from '../../../scripts/userEvent.json';
-import { DB } from '../../types/schema';
+import { data } from '../scripts/userEvent.json';
+import { DB } from './types/schema';
 export const DATABASE = new Kysely<DB>({
   dialect: new SqliteDialect({
     database: new Database('db.sqlite', {}),
