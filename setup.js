@@ -4,7 +4,7 @@ const { setJsonFileProps } = require("./lib/setJsonFileProps.js");
 const gitIgnore = fs.readFileSync(".gitignore", { encoding: "utf8" });
 const updatedGitIgnore = `${gitIgnore}\nbootstrap-next-typescript`;
 fs.writeFileSync(".gitignore", updatedGitIgnore);
-execSync("rm .eslintrc.json tailwind.config.js src/app/page.tsx src/app/layout.tsx src/app/globals.css");
+execSync("rm .eslintrc.json tailwind.config.ts src/app/page.tsx src/app/layout.tsx src/app/globals.css");
 execSync("mkdir -p src src/hooks src/contexts src/ui src/lib src/types src/pages src/pages/api");
 execSync("cp -r ./bootstrap-next-typescript/setup/* .");
 execSync("cp -r ./bootstrap-next-typescript/setup/.vscode .");
