@@ -3,7 +3,7 @@ import { usePathname } from 'next/navigation';
 import { FC, Fragment } from 'react';
 const BreadcrumbsPath: FC = () => {
   const pathname = usePathname();
-  if (!pathname) {
+  if (!pathname || pathname === '/') {
     return null;
   }
   return (
@@ -11,7 +11,7 @@ const BreadcrumbsPath: FC = () => {
       <span className="text-gray-600">/</span>
       {pathname
         .split('/')
-        .slice(2)
+        .slice(1)
         .map((segment) => (
           <Fragment key={segment}>
             <span>

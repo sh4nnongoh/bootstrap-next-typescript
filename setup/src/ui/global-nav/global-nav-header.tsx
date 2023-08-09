@@ -13,8 +13,6 @@ const GlobalNavHeader: FC<{ onClick: VoidFunction }> = ({ onClick }) => (
       </div>
       <h3 className="font-semibold tracking-wide text-gray-400 group-hover:text-gray-50">
         App Router
-        {' '}
-        <span className="Work in progress">(Beta)</span>
       </h3>
     </Link>
   </div>

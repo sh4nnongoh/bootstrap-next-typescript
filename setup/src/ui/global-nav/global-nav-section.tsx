@@ -3,8 +3,11 @@ import GlobalNavItem from './global-nav-item';
 const tabs = [{
   name: 'some name',
   items: [{
-    name: 'item',
-    slug: 'slug',
+    name: 'Home',
+    slug: '/',
+  }, {
+    name: 'Nested Layout',
+    slug: '/layouts',
   }],
 }];
 const GlobalNavSection: FC<{ onClick: VoidFunction }> = ({ onClick }) => (
