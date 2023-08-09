@@ -39,6 +39,11 @@ const updatedEslintIgnore = `${eslintIgnore}\n
 src/types/schema.ts
 \n`;
 fs.writeFileSync(".eslintignore", updatedEslintIgnore);
+const gitIgnore = fs.readFileSync(".gitignore", { encoding: "utf8" });
+const updatedGitIgnore = `${gitIgnore}\n
+db.*
+\n`;
+fs.writeFileSync(".gitignore", updatedGitIgnore);
 const envFile = fs.readFileSync(".env.development", { encoding: "utf8" });
 const updatedEnvFile = `${envFile}\n
 DATABASE_URL="file:./db.sqlite"
