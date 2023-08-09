@@ -41,7 +41,7 @@ src/types/schema.ts
 fs.writeFileSync(".eslintignore", updatedEslintIgnore);
 const envFile = fs.readFileSync(".env.development", { encoding: "utf8" });
 const updatedEnvFile = `${envFile}\n
-src/types/schema.ts
+DATABASE_URL="file:./db.sqlite"
 \n`;
 fs.writeFileSync(".env.development", updatedEnvFile);
 

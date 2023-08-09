@@ -8,6 +8,7 @@ execSync("rm .eslintrc.json tailwind.config.ts src/app/page.tsx src/app/layout.t
 execSync("mkdir -p src src/hooks src/contexts src/ui src/lib src/types src/pages src/pages/api");
 execSync("cp -r ./bootstrap-next-typescript/setup/* .");
 execSync("cp -r ./bootstrap-next-typescript/setup/.vscode .");
+execSync("cp ./bootstrap-next-typescript/setup/.env.development .");
 execSync("cp ./bootstrap-next-typescript/setup/.eslintignore .");
 execSync("cp ./bootstrap-next-typescript/setup/.eslintrc.json .");
 execSync("cp ./bootstrap-next-typescript/setup/.lintstagedrc .");
