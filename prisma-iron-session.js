@@ -4,7 +4,6 @@ const fs = require("fs");
 const { getJsonFileProp } = require("./lib/getJsonFileProp");
 execSync("mkdir -p prisma");
 execSync("cp -r ./bootstrap-next-typescript/prisma-iron-session/* .");
-execSync("cp ./bootstrap-next-typescript/prisma-iron-session/.env.development .");
 execSync("yarn add @paralleldrive/cuid2 better-sqlite3 @types/better-sqlite3");
 execSync("yarn add kysely prisma prisma-kysely iron-session");
 setJsonFileProps({
@@ -40,6 +39,11 @@ const updatedEslintIgnore = `${eslintIgnore}\n
 src/types/schema.ts
 \n`;
 fs.writeFileSync(".eslintignore", updatedEslintIgnore);
+const envFile = fs.readFileSync(".env.development", { encoding: "utf8" });
+const updatedEnvFile = `${envFile}\n
+src/types/schema.ts
+\n`;
+fs.writeFileSync(".env.development", updatedEnvFile);
 
 execSync("yarn db:migrate --name create-user");
 execSync("yarn lint:fix");
