@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable global-require */
 import colors from 'tailwindcss/colors';
 import { Config } from 'tailwindcss';

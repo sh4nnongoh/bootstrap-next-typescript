@@ -12,12 +12,13 @@ execSync("cp ./bootstrap-next-typescript/setup/.env.development .");
 execSync("cp ./bootstrap-next-typescript/setup/.eslintignore .");
 execSync("cp ./bootstrap-next-typescript/setup/.eslintrc.json .");
 execSync("cp ./bootstrap-next-typescript/setup/.lintstagedrc .");
-execSync("yarn add lodash dotenv ts-node clsx @heroicons/react @tailwindcss/forms @tailwindcss/typography");
+execSync("yarn add lodash dotenv ts-node clsx @heroicons/react");
 execSync("yarn add -D install-peerdeps cross-env husky lint-staged");
-execSync("yarn install-peerdeps eslint-config-airbnb --yarn");
+execSync("yarn install-peerdeps -D eslint-config-airbnb --yarn");
 // https://github.com/iamturns/eslint-config-airbnb-typescript#setup
-execSync("yarn add eslint-config-airbnb-typescript @typescript-eslint/eslint-plugin @typescript-eslint/parser");
-execSync("yarn add jest jest-environment-jsdom eslint-plugin-testing-library @types/jest @testing-library/react @testing-library/jest-dom @testing-library/user-event @types/lodash");
+execSync("yarn add -D eslint-config-airbnb-typescript @typescript-eslint/eslint-plugin @typescript-eslint/parser");
+execSync("yarn add -D @tailwindcss/forms @tailwindcss/typography");
+execSync("yarn add -D jest jest-environment-jsdom eslint-plugin-testing-library @types/jest @testing-library/react @testing-library/jest-dom @testing-library/user-event @types/lodash");
 setJsonFileProps({
   filePath: "package.json",
   propsPath: "scripts",
@@ -64,6 +65,8 @@ setJsonFileProps({
   propsPath: "extends",
   updatedProps: ["airbnb", 'airbnb-typescript', "next/core-web-vitals"]
 })
+execSync("rm -rf node_modules yarn.lock");
+execSync("yarn");
 execSync("yarn lint:fix");
 execSync("yarn husky install");
 execSync("yarn husky add .husky/pre-commit \"npx lint-staged && yarn test\"");
