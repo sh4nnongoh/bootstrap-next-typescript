@@ -16,9 +16,9 @@ execSync("yarn add lodash dotenv ts-node clsx @heroicons/react");
 execSync("yarn add -D install-peerdeps cross-env husky lint-staged");
 execSync("yarn install-peerdeps -D eslint-config-airbnb --yarn");
 // https://github.com/iamturns/eslint-config-airbnb-typescript#setup
-execSync("yarn add -D eslint-config-airbnb-typescript @typescript-eslint/eslint-plugin @typescript-eslint/parser");
+execSync("yarn add -D eslint-config-airbnb-typescript @typescript-eslint/eslint-plugin@^7.0.0 @typescript-eslint/parser@^7.0.0");
 execSync("yarn add -D @tailwindcss/forms @tailwindcss/typography");
-execSync("yarn add -D jest jest-environment-jsdom eslint-plugin-testing-library @types/jest @testing-library/react @testing-library/jest-dom @testing-library/user-event @types/lodash");
+execSync("yarn add -D jest jest-environment-jsdom eslint-plugin-testing-library @types/jest @testing-library/react @testing-library/jest-dom @testing-library/user-event @testing-library/dom @types/lodash");
 setJsonFileProps({
   filePath: "package.json",
   propsPath: "scripts",
@@ -26,7 +26,6 @@ setJsonFileProps({
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "prepare": "husky install",
     "lint": "next lint -d .",
     "lint:fix": "next lint -d . --fix",
     "update-version": "node scripts/update-version.js",
@@ -41,6 +40,7 @@ setJsonFileProps({
   updatedProps: [
     "next-env.d.ts",
     "**/*.js",
+    "**/*.mjs",
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts"
@@ -68,9 +68,9 @@ setJsonFileProps({
 execSync("rm -rf node_modules yarn.lock");
 execSync("yarn");
 execSync("yarn lint:fix");
-execSync("yarn husky install");
-execSync("yarn husky add .husky/pre-commit \"npx lint-staged && yarn test\"");
-execSync("yarn husky add .husky/pre-commit \"yarn update-version && git add package.json\"");
+execSync("yarn husky");
+execSync("echo \"npx lint-staged && yarn test\" >> .husky/pre-commit");
+execSync("echo \"yarn update-version && git add package.json\" >> .husky/pre-commit");
 execSync("git reset");
 execSync("git add .");
 execSync("git commit -m 'arch: bootstrap-next-typescript'");
