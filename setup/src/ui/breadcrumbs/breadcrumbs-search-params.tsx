@@ -1,6 +1,10 @@
 'use client';
+import clsx from 'clsx';
 import { useSearchParams } from 'next/navigation';
 import { Fragment } from 'react';
+const classNames = clsx('text-gray-100', {
+  'animate-[highlight_1s_ease-in-out_1]': process.env.NODE_ENV === 'development',
+});
 const BreadcrumbsSearchParams = () => {
   const searchParams = useSearchParams()!;
   return searchParams.toString().length !== 0 ? (
@@ -12,14 +16,14 @@ const BreadcrumbsSearchParams = () => {
           <span className="px-1">
             <span
               key={key}
-              className="animate-[highlight_1s_ease-in-out_1] text-gray-100"
+              className={classNames}
             >
               {key}
             </span>
             <span>=</span>
             <span
               key={value}
-              className="animate-[highlight_1s_ease-in-out_1] text-gray-100"
+              className={classNames}
             >
               {value}
             </span>

@@ -17,7 +17,7 @@ const Label = ({
       'bg-vercel-cyan text-white': color === 'cyan',
       'bg-vercel-violet text-violet-100': color === 'violet',
       'bg-vercel-orange text-white': color === 'orange',
-      'animate-[highlight_1s_ease-in-out_1]': animateRerendering,
+      'animate-[highlight_1s_ease-in-out_1]': process.env.NODE_ENV === 'development' && animateRerendering,
     })}
   >
     {children}
@@ -47,7 +47,7 @@ const Boundary = ({
       'border-vercel-violet': color === 'violet',
       'border-vercel-orange': color === 'orange',
       'animate-[rerender_1s_ease-in-out_1] text-vercel-pink':
-          animateRerendering,
+        process.env.NODE_ENV === 'development' && animateRerendering,
     })}
   >
     <div
@@ -63,7 +63,7 @@ const Boundary = ({
         <Label
           key={label}
           color={color}
-          animateRerendering={animateRerendering}
+          animateRerendering={process.env.NODE_ENV === 'development' && animateRerendering}
         >
           {label}
         </Label>
