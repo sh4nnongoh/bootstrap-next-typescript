@@ -11,16 +11,16 @@ setJsonFileProps({
   propsPath: "scripts",
   updatedProps: {
     ...packageJsonProps.scripts,
-    "test:frontend": `${packageJsonProps.scripts["test:frontend"]} --transformIgnorePatterns \"node_modules/(?!react-leaflet)/\"`
+    "test:fe": `${packageJsonProps.scripts["test:fe"]} --transformIgnorePatterns \"node_modules/(?!react-leaflet)/\"`
   }
 })
-const jestSetup = fs.readFileSync("jest.setup.js", { encoding: "utf8" });
+const jestSetup = fs.readFileSync("jest-fe.setup.ts", { encoding: "utf8" });
 const jestPostfix = `
 const noop = () => {};
 Object.defineProperty(window, "scrollTo", { value: noop, writable: true });
 `
 const updatedJestSetup = `${jestSetup}\n${jestPostfix}\n`;
-fs.writeFileSync("jest.setup.js", updatedJestSetup);
+fs.writeFileSync("jest-fe.setup.ts", updatedJestSetup);
 const globalsCss = fs.readFileSync("src/app/globals.css", { encoding: "utf8" });
 const globalsPostfix = `
 .leaflet-container {

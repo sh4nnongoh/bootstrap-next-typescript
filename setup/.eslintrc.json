@@ -30,6 +30,11 @@
       "@typescript-eslint"
     ],
     "rules": {
+        "import/no-extraneous-dependencies": [
+          "error", {
+            "devDependencies": true
+          }
+        ],
         "react/function-component-definition": [
             2,
             {
