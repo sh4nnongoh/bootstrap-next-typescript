@@ -3,6 +3,7 @@ import Byline from '@/ui/byline';
 import GlobalNav from '@/ui/global-nav';
 import Breadcrumbs from '@/ui/breadcrumbs';
 import { Metadata } from 'next';
+import WebVitals from '@/ui/web-vitals';
 export const metadata: Metadata = {
   title: {
     default: 'Next.js App Router',
@@ -18,6 +19,7 @@ const Layout = ({
   children: React.ReactNode;
 }) => (
   <html lang="en" className="[color-scheme:dark]">
+    <WebVitals />
     <body className="bg-gray-1100 overflow-y-scroll bg-[url('/grid.svg')] pb-36">
       <GlobalNav />
       <div className="lg:pl-72">
