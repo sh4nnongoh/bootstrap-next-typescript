@@ -5,7 +5,8 @@ const Page = async ({
 }: {
   params: { subCategorySlug: string };
 }) => {
-  const category = await getCategory({ slug: params.subCategorySlug });
+  const { subCategorySlug } = await params;
+  const category = await getCategory({ slug: subCategorySlug });
   return (
     <div className="space-y-4">
       <h1 className="text-xl font-medium text-gray-400/80">{category.name}</h1>

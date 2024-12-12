@@ -1,65 +1,78 @@
 {
-    "env": {
-      "browser": true,
-      "es2021": true,
-      "node": true
-    },
-    "extends": [
-      "airbnb",
-      "airbnb-typescript",
-      "next/core-web-vitals"
-    ],
-    "overrides": [
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "node": true
+  },
+  "extends": [
+    "airbnb",
+    "airbnb-typescript",
+    "next/core-web-vitals",
+    "next/typescript"
+  ],
+  "overrides": [
+    {
+      "files": [
+        "**/__tests__/**/*.[jt]s?(x)",
+        "**/?(*.)+(spec|test).[jt]s?(x)"
+      ],
+      "extends": [
+        "plugin:testing-library/react"
+      ]
+    }
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "tsconfigRootDir": ".",
+    "project": [
+      "./tsconfig.json"
+    ]
+  },
+  "plugins": [
+    "testing-library",
+    "@typescript-eslint"
+  ],
+  "rules": {
+    "import/no-extraneous-dependencies": [
+      "error",
       {
-        "files": [
-          "**/__tests__/**/*.[jt]s?(x)",
-          "**/?(*.)+(spec|test).[jt]s?(x)"
-        ],
-        "extends": [
-          "plugin:testing-library/react"
-        ]
+        "devDependencies": true
       }
     ],
-    "parser": "@typescript-eslint/parser",
-    "parserOptions": {
-      "tsconfigRootDir": ".",
-      "project": ["./tsconfig.json"]
-    },
-    "plugins": [
-      "testing-library",
-      "@typescript-eslint"
+    "react/function-component-definition": [
+      2,
+      {
+        "namedComponents": "arrow-function"
+      }
     ],
-    "rules": {
-        "import/no-extraneous-dependencies": [
-          "error", {
-            "devDependencies": true
-          }
-        ],
-        "react/function-component-definition": [
-            2,
-            {
-                "namedComponents": "arrow-function"
-            }
-        ],
-        "lines-around-directive": "off",
-        "complexity": [
-            "warn",
-            20
-        ],
-        "max-len": [
-            "warn",
-            {
-                "code": 120
-            }
-        ],
-        "import/newline-after-import": "off",
-        "no-multiple-empty-lines": [
-            "error",
-            {
-                "max": 0
-            }
-        ],
-        "react/prop-types": "off",
-        "jest/valid-title": "off"
-    }
+    "lines-around-directive": "off",
+    "complexity": [
+      "warn",
+      20
+    ],
+    "max-len": [
+      "warn",
+      {
+        "code": 120
+      }
+    ],
+    "import/newline-after-import": "off",
+    "no-multiple-empty-lines": [
+      "error",
+      {
+        "max": 0
+      }
+    ],
+    "react/prop-types": "off",
+    "jest/valid-title": "off"
+  },
+  "ignorePatterns": [
+    "**/.*",
+    "*.config.js",
+    "build",
+    "coverage",
+    "node_modules",
+    "scripts",
+    "bootstrap-next-typescript"
+  ]
 }

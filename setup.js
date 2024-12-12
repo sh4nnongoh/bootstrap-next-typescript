@@ -1,10 +1,11 @@
 const { execSync } = require("child_process");
 const fs = require("fs");
 const { setJsonFileProps } = require("./lib/setJsonFileProps.js");
+const { getJsonFileProp } = require("./lib/getJsonFileProp");
 const gitIgnore = fs.readFileSync(".gitignore", { encoding: "utf8" });
 const updatedGitIgnore = `${gitIgnore}\nbootstrap-next-typescript`;
 fs.writeFileSync(".gitignore", updatedGitIgnore);
-execSync("rm .eslintrc.json tailwind.config.ts src/app/page.tsx src/app/layout.tsx src/app/globals.css");
+execSync("rm -f .eslintrc.json eslint.config.mjs tailwind.config.ts src/app/page.tsx src/app/layout.tsx src/app/globals.css");
 execSync("mkdir -p src src/hooks src/contexts src/ui src/lib src/types src/pages src/pages/api");
 execSync("cp -r ./bootstrap-next-typescript/setup/* .");
 execSync("cp -r ./bootstrap-next-typescript/setup/.vscode .");
@@ -32,6 +33,17 @@ setJsonFileProps({
     "test": "yarn test:fe && yarn test:be",
     "test:fe": "jest -c jest-frontend.config.js --passWithNoTests --coverage",
     "test:be": "jest -c jest-backend.config.js -i src/pages/api/ --passWithNoTests --coverage",
+  }
+})
+setJsonFileProps({
+  filePath: "package.json",
+  propsPath: "devDependencies",
+  updatedProps: {
+    ...getJsonFileProp({
+      filePath: "package.json",
+      propsPath: "devDependencies",
+    }),
+    "eslint": undefined,
   }
 })
 setJsonFileProps({
@@ -65,6 +77,7 @@ setJsonFileProps({
   propsPath: "extends",
   updatedProps: ["airbnb", 'airbnb-typescript', "next/core-web-vitals"]
 })
+execSync("yarn add -D eslint");
 execSync("rm -rf node_modules yarn.lock");
 execSync("yarn");
 execSync("yarn lint:fix");

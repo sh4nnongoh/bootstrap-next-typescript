@@ -8,8 +8,9 @@ const Layout = async ({
   children: React.ReactNode;
   params: { categorySlug: string };
 }) => {
-  const category = await getCategory({ slug: params.categorySlug });
-  const categories = await getCategories({ parent: params.categorySlug });
+  const { categorySlug } = await params;
+  const category = await getCategory({ slug: categorySlug });
+  const categories = await getCategories({ parent: categorySlug });
   return (
     <div className="space-y-9">
       <div className="flex justify-between">
