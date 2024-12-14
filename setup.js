@@ -10,14 +10,13 @@ execSync("mkdir -p src src/hooks src/contexts src/ui src/lib src/types src/pages
 execSync("cp -r ./bootstrap-next-typescript/setup/* .");
 execSync("cp -r ./bootstrap-next-typescript/setup/.vscode .");
 execSync("cp ./bootstrap-next-typescript/setup/.env.development .");
-execSync("cp ./bootstrap-next-typescript/setup/.eslintignore .");
-execSync("cp ./bootstrap-next-typescript/setup/.eslintrc.json .");
+execSync("cp ./bootstrap-next-typescript/setup/eslint.config.mjs .");
 execSync("cp ./bootstrap-next-typescript/setup/.lintstagedrc .");
 execSync("yarn add lodash dotenv ts-node clsx @heroicons/react");
 execSync("yarn add -D install-peerdeps cross-env husky lint-staged");
 execSync("yarn install-peerdeps -D eslint-config-airbnb --yarn");
 // https://github.com/iamturns/eslint-config-airbnb-typescript#setup
-execSync("yarn add -D eslint-config-airbnb-typescript @typescript-eslint/eslint-plugin@^7.0.0 @typescript-eslint/parser@^7.0.0");
+execSync("yarn add -D eslint-config-airbnb-typescript @typescript-eslint/eslint-plugin @typescript-eslint/parser");
 execSync("yarn add -D @tailwindcss/forms @tailwindcss/typography");
 execSync("yarn add -D jest jest-environment-jsdom eslint-plugin-testing-library @types/jest @testing-library/react @testing-library/jest-dom @testing-library/user-event @testing-library/dom @types/lodash");
 setJsonFileProps({
@@ -71,11 +70,6 @@ setJsonFileProps({
   filePath: "tsconfig.json",
   propsPath: "exclude",
   updatedProps: ["node_modules", "bootstrap-next-typescript"]
-})
-setJsonFileProps({
-  filePath: ".eslintrc.json",
-  propsPath: "extends",
-  updatedProps: ["airbnb", 'airbnb-typescript', "next/core-web-vitals"]
 })
 execSync("yarn add -D eslint");
 execSync("rm -rf node_modules yarn.lock");
