@@ -15,6 +15,7 @@ const eslintConfig = [
       "build",
       "coverage",
       "node_modules",
+      "next-env.d.ts",
       "bootstrap-next-typescript"
     ]
   },
@@ -28,7 +29,6 @@ const eslintConfig = [
     languageOptions: {
       parser: tsparser,
       parserOptions: {
-        tsconfigRootDir: ".",
         project: ["./tsconfig.json"],
         ecmaVersion: 2021,
       },
@@ -41,18 +41,16 @@ const eslintConfig = [
     },
     settings: {
       ...airbnb.settings,
-      ...airbnbTypescript.settings,
-      next: {
-        rootDir: "."
-      }
+      ...airbnbTypescript.settings
     },
     rules: {
       ...airbnb.rules,
       ...airbnbTypescript.rules,
       "quotes": ["error", "double"],
-      "indent": ["error", 2, {
-        "SwitchCase": 1
-      }],
+      // https://github.com/typescript-eslint/typescript-eslint/issues/11455
+      // "indent": ["error", 2, {
+      //   "SwitchCase": 1
+      // }],
       "react/function-component-definition": [2, {
         "namedComponents": "arrow-function"
       }],
